@@ -1,23 +1,61 @@
-import logo from './logo.svg';
+import logo from './images/logo.svg';
 import './App.css';
+import Button from './components/Button';
+import Display from './components/Display';
+import ButtonClear from './components/ButtonClear';
+import { useState } from 'react';
+import { evaluate } from 'mathjs';
 
 function App() {
+
+  const [input, setInput] = useState('');
+
+  const addInput = val => {
+    setInput(input + val);
+  };
+
+  const calculateResult = () => {
+    if (input) {
+      setInput(evaluate(input));
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='react-logo-container'>
+        <img src={logo} className="react-logo" alt="logo" />
+        <h1 className='react-title'>React Interactive Calculator</h1>
+      </div>
+      <div className='react-calculator-container'>
+        <Display input={input} />
+        <div className='react-calculator-row'>
+          <Button clickHandler={addInput}>1</Button>
+          <Button clickHandler={addInput}>2</Button>
+          <Button clickHandler={addInput}>3</Button>
+          <Button clickHandler={addInput}>+</Button>
+        </div>
+        <div className='react-calculator-row'>
+          <Button clickHandler={addInput}>4</Button>
+          <Button clickHandler={addInput}>5</Button>
+          <Button clickHandler={addInput}>6</Button>
+          <Button clickHandler={addInput}>-</Button>
+        </div>
+        <div className='react-calculator-row'>
+          <Button clickHandler={addInput}>7</Button>
+          <Button clickHandler={addInput}>8</Button>
+          <Button clickHandler={addInput}>9</Button>
+          <Button clickHandler={addInput}>*</Button>
+        </div>
+        <div className='react-calculator-row'>
+          <Button clickHandler={calculateResult}>=</Button>
+          <Button clickHandler={addInput}>0</Button>
+          <Button clickHandler={addInput}>.</Button>
+          <Button clickHandler={addInput}>/</Button>
+        </div>
+        <div className='react-calculator-row'>
+          <ButtonClear clearHandler={() => setInput('')}>Clear</ButtonClear>
+        </div>
+      </div>
     </div>
   );
 }
