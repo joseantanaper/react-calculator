@@ -1,10 +1,12 @@
-import logo from './images/logo.svg';
+
 import './App.css';
 import Button from './components/Button';
 import Display from './components/Display';
 import ButtonClear from './components/ButtonClear';
+import Logo from './components/Logo';
 import { useState } from 'react';
 import { evaluate } from 'mathjs';
+
 
 function App() {
 
@@ -22,10 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className='react-logo-container'>
-        <img src={logo} className="react-logo" alt="logo" />
-        <h1 className='react-title'>React Interactive Calculator</h1>
-      </div>
+      <Logo />
       <div className='react-calculator-container'>
         <Display input={input} />
         <div className='react-calculator-row'>
